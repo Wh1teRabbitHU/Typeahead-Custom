@@ -3,7 +3,8 @@ Typeahead-Custom 0.2.1 - EN
 
 <p>
 	Its a custom workaround for handling autocomplete inputs
-
+</p>
+<p>
 	Description in progress...
 </p>
 
@@ -12,7 +13,8 @@ Typeahead-Custom 0.2.1 - HU
 
 <p>
 	Képes selectorral GET-es szűrőlistát küldeni a szerver felé (ID alapú) valamint beállításfüggően id-t vagy input szöveget kitölteni Figyelni kell, hogy a 'target' nevű beállítás csak azonos beállításokkal inicializált inputra legyen érdemes (azaz ne legyen dupla inicializálás egy inputra, mert a kétszer lefutó scriptek hibás működést okozhatnak!)
-
+</p>
+<p>
 	Inicializálás: new kulcsszóval létrehozni egy TypeaheadCustom(_OPTIONS_) példányt ahol az _OPTIONS_ a beállításokat tartalmazza! Az alábbi beállítások elérhetőek jelenleg:
 </p>
 
@@ -121,5 +123,7 @@ Typeahead-Custom 0.2.1 - HU
 <p>
 	Megjegyzés: Az 'id' mező csak akkor kell, ha szeretnénk az id-t is eltárolni!
 	A '#name' és az '#id' inputok kerülnek kitöltésre, rájuk tetszőlegesen lehet 'name' attribútumot rakni. Kötelező megadni id attribútumot a '#text' mezőnek, mivel ez alabján történik a különböző inputok indexelése javascriptben!
+</p>
+<p>
 	Az .autocomplete-suggestion, .autocomplete-selector és a .autocomplete-selector-div osztályok jelenleg kötelezőek, a mellékelt css-ben ezekhez lett készítve a formázás. Későbbi fejlesztés során javascript alapú inicializálás is elérhető lesz, de addig csak a css fájllal együtt lehet módosítani ezeket az osztályneveket! Az #autocomplete-container nem hagyható el és ezen belül csak egy typeahead ajánlott a helyes működés miatt! Abban az esetben ha mégis belekerülne másik typeahead, ügyelni kell rá, hogy a targeten kívül a selector, a suggestion és az id is egyedi selectort kapjon inicializálásnál!
 </p>
