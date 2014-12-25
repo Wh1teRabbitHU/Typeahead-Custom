@@ -12,6 +12,7 @@ function TypeaheadCustom(OPTIONS) {
 	var selector = !extended_options ? "#autocomplete-selector-div-" + field : OPTIONS.selector || ".autocomplete-selector-div";
 	var suggestion = !extended_options ? "#autocomplete-suggestion-" + field : OPTIONS.suggestion || ".autocomplete-suggestion";
 	var id = !extended_options ? "#autocomplete-id-" + OPTIONS.id : OPTIONS.hasID ? OPTIONS.id || ".autocomplete-id" : null;
+	var execute_function = OPTIONS.execute_function || $.noop;
 
 	var filter = OPTIONS.filter || null;
 	var hasID = OPTIONS.hasID || false;
@@ -20,6 +21,7 @@ function TypeaheadCustom(OPTIONS) {
 	var never_delete_text = OPTIONS.never_delete_text !== false;
 	var never_delete_id = OPTIONS.never_delete_id !== false;
 	var required_input_length = OPTIONS.required_input_length || 1;
+	var show_empty_list = OPTIONS.show_empty_list || true;
 
 	var adapterMap = {};
 	var selectedMap = [];
@@ -130,6 +132,10 @@ function TypeaheadCustom(OPTIONS) {
 					getCurrentSuggestion(_target).val(suggestionText);
 					selectedMap[_target.attr('id')] = false;
 					highlighted = null;
+
+					if (!show_empty_list && getCurrentAdapter(_target).getResultMap().length === 0) {
+						closeSelector(_target);
+					}
 				} else {
 					suggestionText = "";
 					getCurrentSuggestion(_target).val(suggestionText);
@@ -164,6 +170,12 @@ function TypeaheadCustom(OPTIONS) {
 				getCurrentId(_target).val("");
 			}
 		}
+		closeSelector(_target);
+
+		execute_function();
+	};
+
+	var closeSelector = function (_target) {
 		highlighted = null;
 		scrollPosition = 0;
 		getCurrentSuggestion(_target).val("");
