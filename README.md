@@ -1,4 +1,4 @@
-Typeahead-Custom 0.2.1 - EN
+Typeahead-Custom 0.2.2 - EN
 ======================
 
 <p>
@@ -8,9 +8,16 @@ Typeahead-Custom 0.2.1 - EN
 	Description in progress...
 </p>
 
-Typeahead-Custom 0.2.1 - HU
+Typeahead-Custom 0.2.2 - HU
 ======================
 
+<h3>v0.2.2 changelog:</h3>
+<ul>
+	<li>'execute_function' néven új beállítás került bevezetésre. Ennek a beállításnak megadhatunk egy funkciót, ami az érték kiválasztását követően lefut! Később várható custom input lista is, amiben megadható lesz, milyen értékeket adjunk át a funkciónak (visszatérési érték, választott sorszám ,stb) Alapértelmezett értéke egy üres funkció</li>
+	<li>'show_empty_list' néven új beállítás került bevezetésre. Abban az esetben, ha a 'required_input_length' eléri a leütött karakterek hosszát, de nincs találati érték, a beállítástól függően megjelenik meg az üres találati lista. Alapértelmezett értéke: true</li>
+	<li>Bekerült a leírásba egy hibajavítás is HTML oldalon. Ki kell rakni mind a suggestion inputra, mind a találati lista selectjére a "tabindex='-1'", különben hibásan kijelölhetőek lesznek tabbal. Később, a javascriptes css megvalósítással már nem lesz rá szükség.</li>
+</ul>
+<hr>
 <p>
 	Képes selectorral GET-es szűrőlistát küldeni a szerver felé (ID alapú) valamint beállításfüggően id-t vagy input szöveget kitölteni Figyelni kell, hogy a 'target' nevű beállítás csak azonos beállításokkal inicializált inputra legyen érdemes (azaz ne legyen dupla inicializálás egy inputra, mert a kétszer lefutó scriptek hibás működést okozhatnak!)
 </p>
@@ -102,6 +109,16 @@ Typeahead-Custom 0.2.1 - HU
 			<td>A minimum begépelt szöveg mennyiségét lehet beállítani vele, amiután megjelenik a találati lista. Nagy lekérdezések esetén jön jól, megszabadítva a fölösleges kommunikációtól mindkét felet.</td>
 			<td>1</td>
 		</tr>
+		<tr>
+			<td>execute_function</td>
+			<td>Ennek a beállításnak megadhatunk egy funkciót, ami az érték kiválasztását követően lefut! Később várható custom input lista is, amiben megadható lesz, milyen értékeket adjunk át a funkciónak (visszatérési érték, választott sorszám ,stb)</td>
+			<td>noop</td>
+		</tr>
+		<tr>
+			<td>show_empty_list</td>
+			<td>Abban az esetben, ha a 'required_input_length' eléri a leütött karakterek hosszát, de nincs találati érték, a beállítástól függően megjelenik meg az üres találati lista.</td>
+			<td>true</td>
+		</tr>
 	</tbody>
 </table>
 <h2>Példa inputra <a href="http://getbootstrap.com/">Bootstrapet</a> (ajánlott) használva:</h2>
@@ -109,12 +126,12 @@ Typeahead-Custom 0.2.1 - HU
 	<pre>
 		<code>
 			[div class="col-sm-9" id="autocomplete-container"]
-				[input type="text" class="form-control autocomplete-suggestion" id="suggestion-text" /]
+				[input type="text" class="form-control autocomplete-suggestion" id="suggestion-text" tabindex="-1" /]
 				[input type="text" class="form-control autocomplete" autocomplete="off" data-target="/url/to/suggestion/list/{0,1,2 ..}" id="text" name="text" /]
 				[input type="hidden" class="autocomplete-id" id="id" name="id" /]
 
 				[div class="col-sm-12 panel-info autocomplete-selector-div" id="selector-div-text"]
-					[select class="autocomplete-selector" multiple="multiple" id="selector-text"][/select]
+					[select class="autocomplete-selector" multiple="multiple" id="selector-text" tabindex="-1"][/select]
 				[/div]
 			[/div]
 		</code>
@@ -127,3 +144,8 @@ Typeahead-Custom 0.2.1 - HU
 <p>
 	Az .autocomplete-suggestion, .autocomplete-selector és a .autocomplete-selector-div osztályok jelenleg kötelezőek, a mellékelt css-ben ezekhez lett készítve a formázás. Későbbi fejlesztés során javascript alapú inicializálás is elérhető lesz, de addig csak a css fájllal együtt lehet módosítani ezeket az osztályneveket! Az #autocomplete-container nem hagyható el és ezen belül csak egy typeahead ajánlott a helyes működés miatt! Abban az esetben ha mégis belekerülne másik typeahead, ügyelni kell rá, hogy a targeten kívül a selector, a suggestion és az id is egyedi selectort kapjon inicializálásnál!
 </p>
+
+<h3>TODO:</h3>
+<div>
+	- javascript alapú css
+</div>
