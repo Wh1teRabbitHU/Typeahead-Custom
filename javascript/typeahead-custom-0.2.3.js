@@ -5,7 +5,7 @@
 
 function TypeaheadCustom(OPTIONS) {
 
-	//Declare options
+	// Declare options
 	var extended_options = OPTIONS.extended_options === true;
 	var field = OPTIONS.field || "";
 	var target = !extended_options ? $("#autocomplete-" + field) : OPTIONS.target || $(".autocomplete");
@@ -30,6 +30,12 @@ function TypeaheadCustom(OPTIONS) {
 	var suggestionId = 0;
 	var highlighted = null;
 	var scrollPosition = 0;
+
+	// Declare methods
+	this.force_search = function() {
+		target.focus();
+		search(target);
+	};
 
 	$(selector).children("select").attr("size", suggestion_size);
 
@@ -61,7 +67,6 @@ function TypeaheadCustom(OPTIONS) {
 	});
 
 	var update = function (event, _target) {
-		var options = "";
 		var optionElements = getCurrentSelector(_target).children("select").children();
 
 		switch (event.keyCode || event.which) {
@@ -105,37 +110,7 @@ function TypeaheadCustom(OPTIONS) {
 				break;
 			default :
 				if (_target.val().length >= required_input_length) {
-					suggestionText = "";
-					var counter = 0;
-
-					getCurrentAdapter(_target).generateData(filter ? $(filter) : null);
-
-					$.each(getCurrentAdapter(_target).getResultMap(), function (key, value) {
-						if (counter < suggestion_pcs) {
-							options += "<option value='" + value["id"] + "'>" + value["value"] + "</option>";
-							if (value["value"].indexOf(target.val()) === 0) {
-								suggestionText = value["value"];
-								suggestionId = value["id"];
-							}
-							counter++;
-						}
-					});
-					getCurrentSelector(_target).children("select").html(options);
-
-					if (_target.val() === "") {
-						getCurrentSelector(_target).hide();
-						suggestionText = "";
-					} else {
-						getCurrentSelector(_target).show();
-					}
-
-					getCurrentSuggestion(_target).val(suggestionText);
-					selectedMap[_target.attr('id')] = false;
-					highlighted = null;
-
-					if (!show_empty_list && getCurrentAdapter(_target).getResultMap().length === 0) {
-						closeSelector(_target);
-					}
+					search(_target);
 				} else {
 					suggestionText = "";
 					getCurrentSuggestion(_target).val(suggestionText);
@@ -144,6 +119,41 @@ function TypeaheadCustom(OPTIONS) {
 					getCurrentSelector(_target).hide();
 				}
 				break;
+		}
+	};
+
+	var search = function(_target) {
+		suggestionText = "";
+		var counter = 0;
+		var options = "";
+
+		getCurrentAdapter(_target).generateData(filter ? $(filter) : null);
+
+		$.each(getCurrentAdapter(_target).getResultMap(), function (key, value) {
+			if (counter < suggestion_pcs) {
+				options += "<option value='" + value["id"] + "'>" + value["value"] + "</option>";
+				if (value["value"].indexOf(target.val()) === 0) {
+					suggestionText = value["value"];
+					suggestionId = value["id"];
+				}
+				counter++;
+			}
+		});
+		getCurrentSelector(_target).children("select").html(options);
+
+		if (_target.val() === "") {
+			getCurrentSelector(_target).hide();
+			suggestionText = "";
+		} else {
+			getCurrentSelector(_target).show();
+		}
+
+		getCurrentSuggestion(_target).val(suggestionText);
+		selectedMap[_target.attr('id')] = false;
+		highlighted = null;
+
+		if (!show_empty_list && getCurrentAdapter(_target).getResultMap().length === 0) {
+			closeSelector(_target);
 		}
 	};
 

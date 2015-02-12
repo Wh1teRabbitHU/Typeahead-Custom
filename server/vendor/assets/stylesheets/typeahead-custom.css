@@ -1,0 +1,23 @@
+.autocomplete-suggestion {
+	margin-bottom: -34px;
+	color: grey;
+}
+
+.autocomplete-selector {
+	z-index: 1;
+	width: 130%;
+	border: 0;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.autocomplete-selector-div {
+	z-index: 1;
+	overflow: hidden;
+	padding-left: 0;
+	margin-top: 5px;
+	margin-bottom: -100px;
+	border: 1px solid lightgrey;
+	display: none;
+	box-shadow: 4px 5px 10px 0 rgba(165, 165, 165, 0.7);
+}

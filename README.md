@@ -1,4 +1,4 @@
-Typeahead-Custom 0.2.2 - EN
+Typeahead-Custom 0.2.3 - EN
 ======================
 
 <p>
@@ -8,8 +8,16 @@ Typeahead-Custom 0.2.2 - EN
 	Description in progress...
 </p>
 
-Typeahead-Custom 0.2.2 - HU
+Typeahead-Custom 0.2.3 - HU
 ======================
+
+<h3>v0.2.3 changelog:</h3>
+<ul>
+	<li>Bekerült egy teszt szerver is a projectbe. Rails alatt egy egyszerű kereső modul szolgálja a teszt adatokat, valamint egy bemutató jellegű oldalon lehet tesztelni a typeahead beállításait. A szerverhez Ruby on rails megléte szükséges! A szerver indítását követően az oldal <a href="http://localhost:3000/">itt</a> érhető el</li>
+	<li>A javascript osztály kapott egy kívülről is elérhető funkciót, 'force_search' néven. Amikor meghívódik ez a függvény, a typeahead jelenlegi állásától függetlenül elindít egy lekérdezést és visszatérve az esetleges találati eredményekkel, megjeleníti a suggestion listát</li>
+</ul>
+
+<hr>
 
 <h3>v0.2.2 changelog:</h3>
 <ul>
@@ -17,7 +25,9 @@ Typeahead-Custom 0.2.2 - HU
 	<li>'show_empty_list' néven új beállítás került bevezetésre. Abban az esetben, ha a 'required_input_length' eléri a leütött karakterek hosszát, de nincs találati érték, a beállítástól függően megjelenik meg az üres találati lista. Alapértelmezett értéke: true</li>
 	<li>Bekerült a leírásba egy hibajavítás is HTML oldalon. Ki kell rakni mind a suggestion inputra, mind a találati lista selectjére a "tabindex='-1'", különben hibásan kijelölhetőek lesznek tabbal. Később, a javascriptes css megvalósítással már nem lesz rá szükség.</li>
 </ul>
+
 <hr>
+
 <p>
 	Képes selectorral GET-es szűrőlistát küldeni a szerver felé (ID alapú) valamint beállításfüggően id-t vagy input szöveget kitölteni Figyelni kell, hogy a 'target' nevű beállítás csak azonos beállításokkal inicializált inputra legyen érdemes (azaz ne legyen dupla inicializálás egy inputra, mert a kétszer lefutó scriptek hibás működést okozhatnak!)
 </p>
