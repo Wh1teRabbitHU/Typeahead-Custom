@@ -1,6 +1,6 @@
 (function($){
 	$(function(){
-		var typeahead = new TypeaheadCustom({
+		TypeaheadCustom.CreateTypeahead("typeahead", {
 			extended_options: true,
 			target: $(".autocomplete"),
 			selector: ".autocomplete-selector-div",
@@ -10,7 +10,7 @@
 		});
 
 		$("#force_search").on("click", function() {
-			typeahead.force_search();
+			TypeaheadCustom.GetTypeahead("typeahead").force_search();
 		});
 	});
 })(jQuery);
